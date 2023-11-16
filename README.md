@@ -2,7 +2,64 @@
 
 This project has been generated using AlgoKit. See below for default getting started instructions.
 
-# Setup
+# simple-donations
+
+## Abstract
+
+The `simple-donations` smart contract is designed for the Algorand blockchain to facilitate and track charitable donations.
+
+Developed as part of the GiveCup project, this contract allows users to donate to registered organizations and keeps a record of each user's total donations. The contract ensures transparency and security in charitable transactions.
+
+## 🔗 Features
+
+- **Donation Tracking**: Tracks the total number of donations and the amount donated by each user.
+- **Organization Management**: Allows the contract owner to add organizations that can receive donations.
+- **User Donation Information**: Users can retrieve the total amount they have donated.
+
+## 🚀 Usage
+
+### Contract Deployment
+
+Deploy the smart contract on the Algorand network. The deployment will initialize the global state including the donation counter and the owner address.
+
+### Adding Organizations
+
+Only the contract owner can add organizations. This is done through the `add_organization` function.
+
+```python
+@app.external
+def add_organization(organization: abi.Address) -> Expr:
+    # Function implementation...
+```
+
+- **Parameters**:
+  - `organization`: The address of the organization to be added.
+
+### Making Donations
+
+Users can donate to registered organizations using the `donate` function.
+
+```python
+@app.external
+def donate(organization: abi.Address, amount: abi.Uint64) -> Expr:
+    # Function implementation...
+```
+
+- **Parameters**:
+  - `organization`: The address of the organization to receive the donation.
+  - `amount`: The amount to be donated.
+
+### Retrieving User Donations
+
+Users can check their total donated amount using the `get_user_donation` function.
+
+```python
+@app.external(read_only=True)
+def get_user_donation(*, output: abi.Uint64) -> Expr:
+    # Function implementation...
+```
+
+## 🏗 Setup
 
 ### Initial setup
 
@@ -41,7 +98,7 @@ This project has been generated using AlgoKit. See below for default getting sta
 
 > For guidance on `smart_contracts` folder and adding new contracts to the project please see [README](smart_contracts/README.md) on the respective folder.
 
-# Tools
+# 🛠 Tools
 
 This project makes use of Python to build Algorand smart contracts. The following tools are in use:
 
@@ -53,5 +110,4 @@ This project makes use of Python to build Algorand smart contracts. The followin
 - [Poetry](https://python-poetry.org/): Python packaging and dependency management.- [Black](https://github.com/psf/black): A Python code formatter.
 - [pytest](https://docs.pytest.org/): Automated testing.
 - [pip-audit](https://pypi.org/project/pip-audit/): Tool for scanning Python environments for packages with known vulnerabilities.
-It has also been configured to have a productive dev experience out of the box in [VS Code](https://code.visualstudio.com/), see the [.vscode](./.vscode) folder.
-
+  It has also been configured to have a productive dev experience out of the box in [VS Code](https://code.visualstudio.com/), see the [.vscode](./.vscode) folder.
